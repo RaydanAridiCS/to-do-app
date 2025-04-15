@@ -229,11 +229,48 @@ nav {
     border-radius: 16px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 .task-list-container h2 {
     font-size: 1.8rem;
     margin-bottom: 15px;
     text-align: center;
+}
+.task-list-header{
+    display: flex;
+    width: 98%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    margin-bottom: 10px;
+}
 
+.task-list-mini-header{
+    background-color: var(--secondary-bg);
+    display: flex;
+    width: 48%;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease-in-out;
+    border: var(--accent) 2px solid;
+    border-radius: 30px;
+}
+
+.btn{
+    background-color: var(--third-bg);
+    color: var(--primary-bg);
+    border: none;
+    border-radius: 30px;
+    padding: 6px 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+.active{
+    background-color: var(--accent);
+    color: var(--primary-bg);
 }
 
 .task-list{

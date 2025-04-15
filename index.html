@@ -17,8 +17,20 @@
 <main>
 
         <div class="task-list-container" id="task-list-container">
-            <h2>My Tasks</h2>
-            <ul class="task-list" id="task-list">
+          <h2>My Tasks</h2>
+          <div class="task-list-header">
+          <div class="task-list-mini-header">
+          <button class="active btn" id="all-tasks">All</button>
+          <button class="btn" id="completed-tasks">Completed</button>  
+          <button class="btn" id="pending-tasks">Pending</button> 
+        </div>
+        <div class="task-list-mini-header">
+          <button class="active btn" id="sort-due-date">Due-Date</button>
+          <button class="btn" id="sort-priority">Priority</button>  
+        </div>
+        </div>
+         
+          <ul class="task-list" id="task-list">
                 <li class="task-identifier task-item">
                     <span class="fas fa-tasks"></span>
                     <span class="task-text">Task name</span>
