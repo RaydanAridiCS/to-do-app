@@ -261,6 +261,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     background-color: var(--third-bg);
     border-radius: 8px;
     padding: 10px;
@@ -270,6 +271,12 @@ nav {
     transition: background-color 0.3s ease-in-out;
     cursor: pointer;
 }
+.completed{
+    background-color: green;
+    color: var(--text-primary);
+    text-decoration: line-through;
+}
+
 .done-task-btn{
     background-color: rgb(0, 235, 0);
     color: var(--primary-bg);
@@ -285,6 +292,7 @@ nav {
     transform: scale(1.05);
     transition: transform 0.3s ease-in-out;
 }
+
 .delete-task-btn{
     background-color: rgb(255,0 , 0);
     color: var(--primary-bg);

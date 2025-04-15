@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const addTaskBtn = document.getElementById("new-task-btn");
   const taskFormContainer = document.getElementById("task-form-container");
-  const taskForm = document.getElementById("task-form");
   const cancelTaskBtn = document.getElementById("cancel-task-btn");
 
   addTaskBtn.addEventListener("click", function () {
@@ -16,6 +15,19 @@ document.addEventListener("DOMContentLoaded", function () {
     taskFormContainer.classList.add("hidden");
     addTaskBtn.style.display = "block";
   });
+
+  const taskList = document.getElementById("task-list");
+  if (taskList) {
+    taskList.addEventListener("click", function (event) {
+      const clickedListItem = event.target.closest(".task-item");
+
+      if (clickedListItem) {
+        clickedListItem.classList.toggle("completed");
+      }
+    });
+  } else {
+    console.error("Task list element with id 'task-list' not found.");
+  }
 
   const addTask = document.getElementById("add-task-btn");
   addTask.addEventListener("click", function () {
