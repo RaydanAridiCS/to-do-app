@@ -55,7 +55,18 @@ nav {
     border-bottom: var(--border) 2px solid;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+.hidden {
+    display: none;
+    opacity: 0; 
+    transition: opacity 0.3s ease-in-out; 
+}
 
+.visible {
+    display: block !important; 
+    opacity: 1; 
+    transition: opacity 0.3s ease-in-out; 
+
+}
 .task-form-container{
     display: none;
     width: 400px;
@@ -72,12 +83,11 @@ nav {
     height: 100%;
     padding: 20px;
 }
-#form{
+.add-task-form{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 10px;
-place-items: center;
 }
 
 #task-input{
@@ -129,3 +139,25 @@ place-items: center;
     color: var(--primary-bg);
     cursor: pointer;
 }
+@media screen and (max-width: 768px) {
+    .task-form-container{
+        width: 350px;
+        height: 140px;
+   }
+   #task-input,
+   #add-task-btn,
+   #cancel-task-btn{
+    font-size: 1rem;
+   }
+}
+@media screen and (max-width: 500px) {
+    .task-form-container{
+        width: 90%;
+        height: 120px;
+   }
+   .task-form{
+    padding: 10px;
+   }
+}
+
+
