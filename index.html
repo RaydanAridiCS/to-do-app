@@ -13,7 +13,36 @@
             To-Do App 
         </h1>
     </nav>
+<main>
 
+        <div class="task-list-container" id="task-list-container">
+            <h2>My Tasks</h2>
+            <ul class="task-list" id="task-list">
+                <li class="task-identifier">
+                    <span class="task-text">Task name</span>
+                    <span class="task-due-date">Due date</span>
+                    <span class="task-priority">Priority</span>
+                    <span class="task-status">Status</span>
+                    <button class="done-task-btn"> <i class="fas fa-check"></i></button>
+                    <button class="delete-task-btn"><i class="fas fa-trash"></i></button>
+                 </li>
+                <!-- Task items will be dynamically added here -->
+                 <li class="task-item">
+                    <span class="task-text">Sample Task 1</span>
+                    <span class="task-due-date"> </span>
+                    <span class="task-priority">High</span>
+                    <span class="task-status">Pending</span>
+                    <button class="done-task-btn"> <i class="fas fa-check"></i></button>
+                    <button class="delete-task-btn"><i class="fas fa-trash"></i></button>
+                 </li>
+
+            </ul>
+        </div>
+    </div>
+
+
+    
+</main>
     <div class="task-form-container hidden" id="task-form-container" >
         <div class="task-form" id="task-form">
             <form class="add-task-form" id="form" action="#">
