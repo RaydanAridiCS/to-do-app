@@ -19,25 +19,32 @@ document.addEventListener("DOMContentLoaded", function () {
   const taskList = document.getElementById("task-list");
   if (taskList) {
     taskList.addEventListener("click", function (event) {
+      const deleteButton = event.target.closest(".delete-task-btn");
+      const doneButton = event.target.closest(".done-task-btn");
       const clickedListItem = event.target.closest(".task-item");
 
-      if (clickedListItem) {
-        clickedListItem.classList.toggle("completed");
+      if (deleteButton) {
+        if (clickedListItem) {
+          clickedListItem.remove();
+        }
+      } else if (doneButton) {
+        if (clickedListItem) {
+          clickedListItem.classList.toggle("not-completed");
+        }
       }
     });
-  } else {
-    console.error("Task list element with id 'task-list' not found.");
-  }
-
+  } 
   const addTask = document.getElementById("add-task-btn");
   addTask.addEventListener("click", function () {
     const taskName = document.getElementById("task-input");
     const priority = document.getElementById("priority-input");
+    const selectedOption = priority.options[priority.selectedIndex];
+    const visibleText = selectedOption.textContent;
     const dueDate = document.getElementById("date-input");
     const taskIcon = document.getElementById("icon-input");
   
     if (taskName.value.trim() !== "") {
-      addTaskToDOM(taskName.value, dueDate.value, priority.value, taskIcon.value);    
+      addTaskToDOM(taskName.value, dueDate.value, visibleText, taskIcon.value);    
       taskName.value = "";
       priority.selectedIndex = 0;
       dueDate.value = "";
@@ -53,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function addTaskToDOM(taskName, dueDate, priority, taskIcon) {
     const listItem = document.createElement("li");
     listItem.classList.add("task-item");
+    listItem.classList.add("not-completed");
   
     const IconSpan = document.createElement("span");
     IconSpan.classList.add("fas", `fa-${taskIcon}`);
