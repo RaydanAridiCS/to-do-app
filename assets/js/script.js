@@ -3,19 +3,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const taskFormContainer = document.getElementById("task-form-container");
   const cancelTaskBtn = document.getElementById("cancel-task-btn");
 
+  //Cancel btn functionality
   addTaskBtn.addEventListener("click", function () {
     taskFormContainer.classList.remove("hidden");
     taskFormContainer.classList.add("visible");
     addTaskBtn.style.display = "none";
 
-  });
-
+  }); 
+  //Add task btn functionality
   cancelTaskBtn.addEventListener("click", function () {
     taskFormContainer.classList.remove("visible");
     taskFormContainer.classList.add("hidden");
     addTaskBtn.style.display = "block";
   });
 
+  //Complete and Delete Task 
   const taskList = document.getElementById("task-list");
   if (taskList) {
     taskList.addEventListener("click", function (event) {
@@ -33,7 +35,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
     });
-  } 
+  }
+
+
+  //Adding a new Task
   const addTask = document.getElementById("add-task-btn");
   addTask.addEventListener("click", function () {
     const taskName = document.getElementById("task-input");
@@ -57,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
     addTaskBtn.style.display = "block";
   });
 
+  //Function to add task to the DOM
   function addTaskToDOM(taskName, dueDate, priority, taskIcon) {
     const listItem = document.createElement("li");
     listItem.classList.add("task-item");
@@ -114,3 +120,44 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+
+
+function sortTasksByDueDate() {
+  const taskList = document.getElementById("task-list");
+  const tasks = Array.from(taskList.children);
+
+  tasks.sort((a, b) => {
+    const dueDateA = new Date(a.querySelector(".task-due-date").textContent);
+    const dueDateB = new Date(b.querySelector(".task-due-date").textContent);
+    return dueDateA - dueDateB;
+  });
+
+  while (taskList.firstChild) {
+    taskList.removeChild(taskList.firstChild);
+  }
+
+  tasks.forEach(task => taskList.appendChild(task));
+}
+
+function filterTasksByPriority() {
+  const taskList = document.getElementById("task-list");
+  const filterSelect = document.getElementById("priority-input");
+  const selectedPriority = filterSelect.value;
+
+  const tasks = Array.from(taskList.children);
+  const filteredTasks = tasks.filter(task => {
+    return task.querySelector(".task-priority").textContent === selectedPriority;
+  });
+
+  while (taskList.firstChild) {
+    taskList.removeChild(taskList.firstChild);
+  }
+
+  filteredTasks.forEach(task => taskList.appendChild(task));
+}
+
+//Sorting tasks by due date
+document.getElementById("sort-due-date").addEventListener("click", sortTasksByDueDate);
+
+//Filtering tasks by priority
+document.getElementById("sort-priority").addEventListener("click", filterTasksByPriority);
