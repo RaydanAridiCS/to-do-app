@@ -313,7 +313,7 @@ nav {
     color: var(--text-primary);
     text-decoration: line-through;
 }
-.not-completed important{
+.not-completed {
     background-color: var(--third-bg);
     color: var(--text-primary);
 }

@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
       dueDate.value = "";
       taskIcon.selectedIndex = 0;
     } else {
-      alert("Please enter a task.");
+     alert("Please enter a task.");
     }
     taskFormContainer.classList.remove("visible");
     taskFormContainer.classList.add("hidden");
@@ -139,25 +139,100 @@ function sortTasksByDueDate() {
   tasks.forEach(task => taskList.appendChild(task));
 }
 
-function filterTasksByPriority() {
+function sortTasksByPriority() {
   const taskList = document.getElementById("task-list");
-  const filterSelect = document.getElementById("priority-input");
-  const selectedPriority = filterSelect.value;
-
   const tasks = Array.from(taskList.children);
-  const filteredTasks = tasks.filter(task => {
-    return task.querySelector(".task-priority").textContent === selectedPriority;
+
+  const priorityOrder = {
+    "Can Wait": 7,
+    "No Hurry":6,
+    "Chill": 5,
+    "I will do it tomorrow": 4,
+    "Should do": 3,
+    "ASAP": 2,
+    "Urgent": 1
+  };
+
+  tasks.sort((a, b) => {
+    const priorityA = priorityOrder[a.querySelector(".task-priority").textContent.trim()];
+    const priorityB = priorityOrder[b.querySelector(".task-priority").textContent.trim()];
+
+    if (priorityA === undefined || priorityB === undefined) {
+      console.error("Priority not found for one or both tasks.");
+      return 0; 
+    }
+
+    return priorityA - priorityB;
   });
 
   while (taskList.firstChild) {
     taskList.removeChild(taskList.firstChild);
   }
 
-  filteredTasks.forEach(task => taskList.appendChild(task));
+  tasks.forEach(task => taskList.appendChild(task));
 }
 
-//Sorting tasks by due date
-document.getElementById("sort-due-date").addEventListener("click", sortTasksByDueDate);
+const originalSort = document.getElementById("original-sort");
+originalSort.addEventListener("click", function () {
+  resetTasks();
+  originalSort.classList.toggle("active");
+  sortByDueDate.classList.remove("active");
+  sortByPriority.classList.remove("active");
+});
 
-//Filtering tasks by priority
-document.getElementById("sort-priority").addEventListener("click", filterTasksByPriority);
+//Sorting tasks by due date
+const sortByDueDate = document.getElementById("sort-due-date");
+sortByDueDate.addEventListener("click", function () {
+  console.log("Sorting by due date");
+  sortTasksByDueDate();
+  sortByDueDate.classList.toggle("active");
+  sortByPriority.classList.remove("active");
+  originalSort.classList.remove("active");
+});
+
+//Sorting tasks by priority
+const sortByPriority = document.getElementById("sort-priority");
+sortByPriority.addEventListener("click", function () {
+  sortTasksByPriority();
+  sortByPriority.classList.add("active");
+  sortByDueDate.classList.remove("active");
+  originalSort.classList.remove("active");
+});
+
+  // Save original tasks in local storage
+  const originalTasks = Array.from(document.getElementById("task-list").children).map(task => {
+    return {
+      name: task.querySelector(".task-text").textContent,
+      dueDate: task.querySelector(".task-due-date").textContent,
+      priority: task.querySelector(".task-priority").textContent,
+      icon: task.querySelector(".fas").classList[1],
+      completed: task.classList.contains("completed")
+    };
+  });
+  localStorage.setItem("originalTasks", JSON.stringify(originalTasks));
+
+function resetTasks() {
+  const taskList = document.getElementById("task-list");
+  const originalTasks = JSON.parse(localStorage.getItem("originalTasks")) || [];
+
+  while (taskList.firstChild) {
+    taskList.removeChild(taskList.firstChild);
+  }
+
+  originalTasks.forEach(taskData => {
+    const task = document.createElement("li");
+    task.classList.add("task-item", taskData.completed ? "completed" : "not-completed");
+
+    // Reconstruct the task item with its data
+    task.innerHTML = `
+      <span class="fas ${taskData.icon}"></span>
+      <span class="task-text">${taskData.name}</span>
+      <span class="task-due-date">${taskData.dueDate || ""}</span>
+      <span class="task-priority">${taskData.priority}</span>
+      <span class="task-status">Pending</span>
+      <button class="done-task-btn"><i class="fas fa-check"></i></button>
+      <button class="delete-task-btn"><i class="fas fa-trash"></i></button>
+    `;
+    taskList.appendChild(task);
+  });
+}

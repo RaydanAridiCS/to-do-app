@@ -25,13 +25,14 @@
           <button class="btn" id="pending-tasks">Pending</button> 
         </div>
         <div class="task-list-mini-header">
-          <button class="active btn" id="sort-due-date">Due-Date</button>
+          <button class="active btn" id="original-sort">Original</button>
+          <button class="btn" id="sort-due-date">Due-Date</button>
           <button class="btn" id="sort-priority">Priority</button>  
         </div>
         </div>
          
           <ul class="task-list" id="task-list">
-                <li class="task-identifier task-item">
+                <!-- <li class="task-identifier task-item">
                     <span class="fas fa-tasks"></span>
                     <span class="task-text">Task name</span>
                     <span class="task-due-date">Due date</span>
@@ -39,7 +40,7 @@
                     <span class="task-status">Status</span>
                     <button class="done-task-btn"> <i class="fas fa-check"></i></button>
                     <button class="delete-task-btn"><i class="fas fa-trash"></i></button>
-                 </li>
+                 </li> -->
                 <!-- Task items will be dynamically added here -->
                  <li class="task-item completed">
                     <span class="fas fa-bag-shopping"></span>
@@ -50,6 +51,51 @@
                     <button class="done-task-btn"> <i class="fas fa-check"></i></button>
                     <button class="delete-task-btn"><i class="fas fa-trash"></i></button>
                  </li>
+                 <li class="task-item not-completed">
+                  <span class="fas fa-bag-shopping"></span>
+                  <span class="task-text">Sample Task 2</span>
+                  <span class="task-due-date">24-4-2025 </span>
+                  <span class="task-priority">Urgent</span>
+                  <span class="task-status">Pending</span>
+                  <button class="done-task-btn"> <i class="fas fa-check"></i></button>
+                  <button class="delete-task-btn"><i class="fas fa-trash"></i></button>
+               </li>
+               <li class="task-item not-completed">
+                <span class="fas fa-bag-shopping"></span>
+                <span class="task-text">Sample Task 3</span>
+                <span class="task-due-date">24-5-2025 </span>
+                <span class="task-priority">ASAP</span>
+                <span class="task-status">Pending</span>
+                <button class="done-task-btn"> <i class="fas fa-check"></i></button>
+                <button class="delete-task-btn"><i class="fas fa-trash"></i></button>
+             </li>                 
+             <li class="task-item not-completed">
+              <span class="fas fa-bag-shopping"></span>
+              <span class="task-text">Sample Task 4</span>
+              <span class="task-due-date">24-5-2023 </span>
+              <span class="task-priority">I will do it tomorrow</span>
+              <span class="task-status">Pending</span>
+              <button class="done-task-btn"> <i class="fas fa-check"></i></button>
+              <button class="delete-task-btn"><i class="fas fa-trash"></i></button>
+           </li>                 
+           <li class="task-item not-completed">
+            <span class="fas fa-bag-shopping"></span>
+            <span class="task-text">Sample Task 5</span>
+            <span class="task-due-date">24-5-2015 </span>
+            <span class="task-priority">Can Wait</span>
+            <span class="task-status">Pending</span>
+            <button class="done-task-btn"> <i class="fas fa-check"></i></button>
+            <button class="delete-task-btn"><i class="fas fa-trash"></i></button>
+         </li>                 
+         <li class="task-item not-completed">
+                  <span class="fas fa-bag-shopping"></span>
+                  <span class="task-text">Sample Task 6</span>
+                  <span class="task-due-date">24-1-2025 </span>
+                  <span class="task-priority">No Hurry</span>
+                  <span class="task-status">Pending</span>
+                  <button class="done-task-btn"> <i class="fas fa-check"></i></button>
+                  <button class="delete-task-btn"><i class="fas fa-trash"></i></button>
+               </li>
 
             </ul>
         </div>
@@ -59,7 +105,7 @@
     
     <div class="task-form-container hidden" id="task-form-container" >
         <div class="task-form" id="task-form">
-            <form class="add-task-form" id="form" action="#">
+            <form class="add-task-form" id="form" >
                 <input type="text" id="task-input" placeholder="Enter a new task..." required>
                 <select id="priority-input" required>
                     <option value="" disabled selected>Select priority</option>
