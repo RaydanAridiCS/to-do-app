@@ -13,6 +13,7 @@
             To-Do App 
         </h1>
     </nav>
+
 <main>
 
         <div class="task-list-container" id="task-list-container">
@@ -40,13 +41,117 @@
         </div>
     </div>
 
+</main>
 
     
-</main>
     <div class="task-form-container hidden" id="task-form-container" >
         <div class="task-form" id="task-form">
             <form class="add-task-form" id="form" action="#">
                 <input type="text" id="task-input" placeholder="Enter a new task..." required>
+                <select id="priority-input" required>
+                    <option value="" disabled selected>Select priority</option>
+                    <option value="canWait">Can Wait</option>
+                    <option value="noHurry">No Hurry</option>
+                    <option value="chill">Chill</option>
+                    <option value="iWillDoItTomorrow">I will do it tomorrow</option>
+                    <option value="shouldDo">Should do</option>
+                    <option value="asap">ASAP</option>
+                    <option value="urgent">Urgent</option>
+                </select>
+                <select id="icon-input" required>
+                    <option value="">No Icon</option>
+
+                    <optgroup label="General Categories">
+                      <option value="fas fa-tag">Tag</option>
+                      <option value="fas fa-bookmark">Bookmark</option>
+                      <option value="fas fa-folder">Folder</option>
+                      <option value="fas fa-file">File</option>
+                    </optgroup>
+                  
+                    <optgroup label="Work / Office">
+                      <option value="fas fa-briefcase">Work</option>
+                      <option value="fas fa-building">Office</option>
+                      <option value="fas fa-laptop">Laptop</option>
+                      <option value="fas fa-desktop">Desktop</option>
+                      <option value="fas fa-chart-bar">Chart</option>
+                      <option value="fas fa-tasks">Tasks</option>
+                      <option value="fas fa-clipboard">Clipboard</option>
+                      <option value="fas fa-project-diagram">Project</option>
+                    </optgroup>
+                  
+                    <optgroup label="Personal / Home">
+                      <option value="fas fa-home">Home</option>
+                      <option value="fas fa-bed">Sleep</option>
+                      <option value="fas fa-book">Reading</option>
+                      <option value="fas fa-utensils">Food</option>
+                      <option value="fas fa-heart">Personal</option>
+                      <option value="fas fa-tshirt">Clothing</option>
+                      <option value="fas fa-gamepad">Game</option>
+                      <option value="fas fa-music">Music</option>
+                    </optgroup>
+                  
+                    <optgroup label="Errands / Shopping">
+                      <option value="fas fa-shopping-cart">Shopping Cart</option>
+                      <option value="fas fa-bag-shopping">Shopping Bag</option>
+                      <option value="fas fa-store">Store</option>
+                      <option value="fas fa-map-marker-alt">Location</option>
+                      <option value="fas fa-car">Car</option>
+                      <option value="fas fa-bicycle">Bike</option>
+                      <option value="fas fa-gas-pump">Gas</option>
+                    </optgroup>
+                  
+                    <optgroup label="Health / Fitness">
+                      <option value="fas fa-heartbeat">Health</option>
+                      <option value="fas fa-dumbbell">Fitness</option>
+                      <option value="fas fa-running">Run</option>
+                      <option value="fas fa-walking">Walk</option>
+                      <option value="fas fa-medkit">Medical</option>
+                      <option value="fas fa-weight-scale">Weight</option>
+                    </optgroup>
+                  
+                    <optgroup label="Finance / Bills">
+                      <option value="fas fa-dollar-sign">$ Dollar</option>
+                      <option value="fas fa-euro-sign">€ Euro</option>
+                      <option value="fas fa-pound-sign">£ Pound</option>
+                      <option value="fas fa-credit-card">Credit Card</option>
+                      <option value="fas fa-receipt">Receipt</option>
+                      <option value="fas fa-wallet">Wallet</option>
+                    </optgroup>
+                  
+                    <optgroup label="Social / Communication">
+                      <option value="fas fa-envelope">Email</option>
+                      <option value="fas fa-phone-alt">Call</option>
+                      <option value="fas fa-users">Group</option>
+                      <option value="fas fa-comment">Comment</option>
+                      <option value="fas fa-share-alt">Share</option>
+                      <option value="fas fa-wifi">Wifi</option>
+                    </optgroup>
+                  
+                    <optgroup label="Time / Reminders">
+                      <option value="fas fa-calendar-alt">Calendar</option>
+                      <option value="fas fa-clock">Time</option>
+                      <option value="fas fa-bell">Reminder</option>
+                      <option value="fas fa-hourglass-half">Hourglass</option>
+                    </optgroup>
+                  
+                    <optgroup label="Status / Actions">
+                      <option value="fas fa-star">Important</option>
+                      <option value="fas fa-exclamation-triangle">Urgent</option>
+                      <option value="fas fa-check-double">Done</option>
+                      <option value="fas fa-flag-checkered">Goal</option>
+                      <option value="fas fa-undo">Undo</option>
+                      <option value="fas fa-redo">Redo</option>
+                    </optgroup>
+
+                    <optgroup label="Settings / Tools">
+                      <option value="fas fa-cog">Settings</option>
+                      <option value="fas fa-wrench">Tools</option>
+                      <option value="fas fa-filter">Filter</option>
+                      <option value="fas fa-search">Search</option>
+                    </optgroup>
+                  </select>
+                </select>
+                <input type="date" id="date-input" placeholder="Enter due Date: " required>
                 <button type="submit" id="cancel-task-btn">Cancel</button>
                 <button type="submit" id="add-task-btn">Add Task</button>
             </form>
