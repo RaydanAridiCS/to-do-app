@@ -267,6 +267,7 @@ nav {
     padding: 8px;
     margin-bottom: 10px;
 }
+
 #number-of-tasks{
     
     font-size: 1.2rem;
@@ -306,6 +307,19 @@ nav {
     background-color: var(--accent);
     color: var(--primary-bg);
 }
+@media screen and (max-width: 500px) {
+    .task-list-header{
+        flex-direction: column;
+        align-items: center;
+    }
+    .task-list-mini-header{
+        width: 100%;
+    }
+    #number-of-tasks{
+        margin: 10px;    
+    }
+    
+}
 
 .task-list{
     list-style: none;
@@ -326,6 +340,14 @@ nav {
     color: var(--text-primary);
     transition: background-color 0.3s ease-in-out;
     cursor: pointer;
+}
+@media screen and (max-width: 500px) {
+    .task-item{
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+    
 }
 .completed{
     background-color: green;
