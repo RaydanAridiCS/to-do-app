@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   const numberOfTasks = document.getElementById("number-of-tasks");
-  let numOfTasks =  numberOfTasks.textContent = 0;
+  let numOfTasks =  numberOfTasks.textContent =0;
   
   
   //Complete and Delete Task 
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (deleteButton) {
         if (clickedListItem) {
-          numberOfTasks.textContent = numOfTasks - 1;
+          numberOfTasks.textContent = numOfTasks -=1;
           clickedListItem.remove();
         }
       } else if (doneButton) {
