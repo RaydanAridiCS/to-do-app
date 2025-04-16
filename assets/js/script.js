@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (deleteButton) {
         if (clickedListItem) {
+          numberOfTasks.textContent = numOfTasks - 1;
           clickedListItem.remove();
         }
       } else if (doneButton) {
@@ -138,7 +139,9 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       console.error("Task list container element with id 'taskList' not found.");
     }
+  
   }
+
 });
 
 
@@ -192,20 +195,12 @@ function sortTasksByPriority() {
   tasks.forEach(task => taskList.appendChild(task));
 }
 
-const originalSort = document.getElementById("original-sort");
-originalSort.addEventListener("click", function () {
-  resetTasks();
-  originalSort.classList.toggle("active");
-  sortByDueDate.classList.remove("active");
-  sortByPriority.classList.remove("active");
-});
-
 //Sorting tasks by due date
 const sortByDueDate = document.getElementById("sort-due-date");
 sortByDueDate.addEventListener("click", function () {
   console.log("Sorting by due date");
   sortTasksByDueDate();
-  sortByDueDate.classList.toggle("active");
+  sortByDueDate.classList.add("active");
   sortByPriority.classList.remove("active");
   originalSort.classList.remove("active");
 });
@@ -219,47 +214,11 @@ sortByPriority.addEventListener("click", function () {
   originalSort.classList.remove("active");
 });
 
-  // Save original tasks in local storage
-  const originalTasks = Array.from(document.getElementById("task-list").children).map(task => {
-    return {
-      name: task.querySelector(".task-text").textContent,
-      dueDate: task.querySelector(".task-due-date").textContent,
-      priority: task.querySelector(".task-priority").textContent,
-      icon: task.querySelector(".fas").classList[1],
-      completed: task.classList.contains("completed")
-    };
-  });
-  localStorage.setItem("originalTasks", JSON.stringify(originalTasks));
-
-function resetTasks() {
-  const taskList = document.getElementById("task-list");
-  const originalTasks = JSON.parse(localStorage.getItem("originalTasks")) || [];
-
-  while (taskList.firstChild) {
-    taskList.removeChild(taskList.firstChild);
-  }
-
-  originalTasks.forEach(taskData => {
-    const task = document.createElement("li");
-    task.classList.add("task-item", taskData.completed ? "completed" : "not-completed");
-
-    // Reconstruct the task item with its data
-    task.innerHTML = `
-      <span class="fas ${taskData.icon}"></span>
-      <span class="task-text">${taskData.name}</span>
-      <span class="task-due-date">${taskData.dueDate || ""}</span>
-      <span class="task-priority">${taskData.priority}</span>
-      <span class="task-status">Pending</span>
-      <button class="done-task-btn"><i class="fas fa-check"></i></button>
-      <button class="delete-task-btn"><i class="fas fa-trash"></i></button>
-    `;
-    taskList.appendChild(task);
-  });
-}
 
 
-const completedTasks = document.getElementById("completed-tasks");
-completedTasks.addEventListener("click", function () {
+
+  const completedTasks = document.getElementById("completed-tasks");
+  completedTasks.addEventListener("click", function () {
   const taskList = document.getElementById("task-list");
   const tasks = Array.from(taskList.children);
 
