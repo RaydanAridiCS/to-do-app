@@ -52,24 +52,33 @@ document.addEventListener("DOMContentLoaded", function () {
     const dueDate = document.getElementById("date-input");
     const taskIcon = document.getElementById("icon-input");
   
-    if (taskName.value.trim() !== "" && 
-        priority.selectedIndex !== 0 &&
-        dueDate.value.trim() !== "" &&
-        taskIcon.selectedIndex !== 0 
-      ) {
-      addTaskToDOM(taskName.value, dueDate.value, visibleText, taskIcon.value);    
-      taskName.value = "";
-      priority.selectedIndex = 0;
-      dueDate.value = "";
-      taskIcon.selectedIndex = 0;
-      numberOfTasks.textContent = numOfTasks ;
-    } else {
-     alert("Please enter a task.");
-    }
-    taskFormContainer.classList.remove("visible");
-    taskFormContainer.classList.add("hidden");
-    addTaskBtn.style.display = "block";
-  });
+    
+    if(taskName.value.trim() !== ""){
+      if(dueDate.value.trim() !== ""){
+        if(priority.selectedIndex !== 0){
+          if(taskIcon.selectedIndex !== 0 ){
+            addTaskToDOM(taskName.value, dueDate.value, visibleText, taskIcon.value);    
+            taskName.value = "";
+            priority.selectedIndex = 0;
+            dueDate.value = "";
+            taskIcon.selectedIndex = 0;
+            numberOfTasks.textContent = numOfTasks ;
+            taskFormContainer.classList.remove("visible");
+            taskFormContainer.classList.add("hidden");
+            addTaskBtn.style.display = "block";
+          }else 
+            showToast("Please enter an icon.");
+        }else 
+          showToast("Please enter a priority.");
+      }else 
+        showToast("Please enter a due-date.");
+    }else 
+      showToast("Please enter a task name.");
+
+    
+  
+
+});
 
   //Function to add task to the DOM
   function addTaskToDOM(taskName, dueDate, priority, taskIcon) {
@@ -298,3 +307,29 @@ pendingTasks.addEventListener("click", function () {
     }
   });
 });
+
+function showToast(message, duration = 3000) { 
+  const toastElement = document.getElementById("toast-notification");
+  const messageElement = document.getElementById("toast-message");
+
+  if (!toastElement || !messageElement) {
+    console.error("Toast elements not found!");
+    return;
+  }
+
+  messageElement.textContent = message;
+
+  toastElement.classList.add("show");
+
+  setTimeout(() => {
+    hideToast();
+  }, duration);
+}
+
+function hideToast() {
+   const toastElement = document.getElementById("toast-notification");
+   if (toastElement) {
+      toastElement.classList.remove("show");
+   }
+}
+
